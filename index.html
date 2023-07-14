@@ -27,114 +27,17 @@
           <button
             class="profile__add-button"
             type="button"
-            aria-label="Добавление"
+            aria-label="Добавление изображения"
             title="Добавление"
           ></button>
         </section>
-        <section class="elements" aria-label="Секция с изображениями">
-          <div class="element">
-            <img
-              src="./images/kirill-pershin-1088404-unsplash.jpg"
-              alt="Фото крепости"
-              class="element__photo"
-            />
-            <div class="element__description">
-              <h2 class="element__title">Карачаевск</h2>
-              <button
-                class="element__like-btn"
-                type="button"
-                aria-label="Понравилось"
-                title="Понравилось"
-              ></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/cdn2.tu-tu.webp"
-              alt="Фото Эльбруса"
-              class="element__photo"
-            />
-            <div class="element__description">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button
-                class="element__like-btn"
-                type="button"
-                aria-label="Понравилось"
-                title="Понравилось"
-              ></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/146790.jpg"
-              alt="Фото Домбай"
-              class="element__photo"
-            />
-            <div class="element__description">
-              <h2 class="element__title">Домбай</h2>
-              <button
-                class="element__like-btn"
-                type="button"
-                aria-label="Понравилось"
-                title="Понравилось"
-              ></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/elbrus.jpg"
-              alt="Фото горных вершин"
-              class="element__photo"
-            />
-            <div class="element__description">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button
-                class="element__like-btn"
-                type="button"
-                aria-label="Понравилось"
-                title="Понравилось"
-              ></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/dombai.jpg"
-              alt="Фото канатной дороги"
-              class="element__photo"
-            />
-            <div class="element__description">
-              <h2 class="element__title">Домбай</h2>
-              <button
-                class="element__like-btn"
-                type="button"
-                aria-label="Понравилось"
-                title="Понравилось"
-              ></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/168.jpg"
-              alt="Фото разрушенного монастыря на фоне гор"
-              class="element__photo"
-            />
-            <div class="element__description">
-              <h2 class="element__title">Карачаевск</h2>
-              <button
-                class="element__like-btn"
-                type="button"
-                aria-label="Понравилось"
-                title="Понравилось"
-              ></button>
-            </div>
-          </div>
-        </section>
+        <section class="cards" aria-label="Секция с изображениями"></section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy;&nbsp;2020 Mesto Russia</p>
       </footer>
-      <div class="popup">
-        <div class="popup__container">
+      <div class="popup popup_edit">
+        <div class="popup__container" name="edit-form">
           <button
             class="popup__close-button"
             type="button"
@@ -168,6 +71,73 @@
           </form>
         </div>
       </div>
+      <div class="popup popup_add">
+        <div class="popup__container popup__content_add" name="add-form">
+          <button
+            class="popup__close-button popup__close_add"
+            type="button"
+            aria-label="Закрытие попапа"
+            title="Закрыть"
+          ></button>
+          <h2 class="popup__title">Новое место</h2>
+          <form class="form" name="form_fields">
+            <input
+              type="text"
+              class="form__input form__input_title"
+              name="title"
+              placeholder="Название"
+              value=""
+            />
+            <input
+              type="text"
+              class="form__input form__input_link"
+              name="link"
+              placeholder="Ссылка на картинку"
+              value=""
+            />
+            <button
+              class="popup__save-button"
+              type="submit"
+              aria-label="Создать"
+              title="Создать"
+            >
+              Создать
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_img">
+        <form class="popup__container-img" name="img-form">
+          <button
+            class="popup__close-button popup__close-button_img"
+            aria-label="Закрыть"
+            type="button"
+          ></button>
+          <figure class="popup__figure">
+            <img class="popup__img" src="#" alt="#" />
+            <figcaption class="popup__description"></figcaption>
+          </figure>
+        </form>
+      </div>
+
+      <template id="card-template">
+        <div class="cards__item">
+          <img src="#" class="cards__image" alt="#" />
+          <button
+            type="button"
+            class="cards__trash"
+            aria-label="Удалить"
+          ></button>
+          <div class="cards__description">
+            <h2 class="cards__title"></h2>
+            <button
+              type="button"
+              class="cards__like"
+              aria-label="Лайк"
+            ></button>
+          </div>
+        </div>
+      </template>
     </div>
     <script async src="./scripts/script.js"></script>
   </body>
