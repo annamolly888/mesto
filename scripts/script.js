@@ -4,7 +4,7 @@ const formElement = document.querySelector(".form");
 
 const popupEdit = document.querySelector(".popup_edit");
 const buttonCloseEdit = popupEdit.querySelector(".popup__close-button");
-const buttonCloseAdd = document.querySelector(".popup__close_add");
+const buttonCloseAdd = document.querySelector(".popup__close-button_add");
 const formElement1 = document.querySelector(".popup__container");
 const buttonAdd = document.querySelector(".profile__add-button");
 const popupAdd = document.querySelector(".popup_add");
@@ -133,7 +133,7 @@ initialCards.forEach((initialCards) => {
 });
 
 // Для добавления картинки
-const formElementAdd = document.querySelector(".popup__content_add");
+const formElementAdd = document.querySelector(".popup__container_add");
 const titleInput = document.querySelector(".form__input_title");
 const linkInput = document.querySelector(".form__input_link");
 
