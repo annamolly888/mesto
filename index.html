@@ -49,17 +49,31 @@
             <input
               type="text"
               class="form__input form__input_field_name"
-              name="input_name"
+              name="input_field_name"
               placeholder="Ваше Имя"
               value=""
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span
+              id="input_field_name-error"
+              class="popup__error popup__error_visible"
+            ></span>
             <input
               type="text"
               class="form__input form__input_field_job"
-              name="input_job"
+              name="input_field_job"
               placeholder="Место работы"
               value=""
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span
+              id="input_field_job-error"
+              class="popup__error popup__error_visible"
+            ></span>
             <button
               class="popup__save-button"
               type="submit"
@@ -87,14 +101,26 @@
               name="title"
               placeholder="Название"
               value=""
+              minlength="2"
+              maxlength="30"
+              required
             />
+            <span
+              id="title-error"
+              class="popup__error popup__error_visible"
+            ></span>
             <input
-              type="text"
+              type="url"
               class="form__input form__input_link"
               name="link"
               placeholder="Ссылка на картинку"
               value=""
+              required
             />
+            <span
+              id="link-error"
+              class="popup__error popup__error_visible"
+            ></span>
             <button
               class="popup__save-button"
               type="submit"
@@ -139,6 +165,7 @@
       </template>
     </div>
     <script async src="./scripts/cards.js"></script>
+    <script async src="./scripts/validate.js"></script>
     <script async src="./scripts/script.js"></script>
   </body>
 </html>

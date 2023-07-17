@@ -112,6 +112,14 @@ const handleAddFormSubmit = (event) => {
   event.target.reset();
 };
 
+// закрытие клавишей esc
+function closePopupEsc(evt) {
+  if (evt.key === "Escape") {
+    const popup = document.querySelector(".popup_opened");
+    closePopup(popup);
+  }
+}
+
 formElement.addEventListener("submit", handleFormSubmit);
 formElementAdd.addEventListener("submit", handleAddFormSubmit);
 editButton.addEventListener("click", () => openPopupEdit());
@@ -119,3 +127,12 @@ buttonCloseEdit.addEventListener("click", () => closePopup(popupEdit));
 buttonCloseAdd.addEventListener("click", () => closePopup(popupAdd));
 buttonAdd.addEventListener("click", () => openPopup(popupAdd));
 popupImgClose.addEventListener("click", () => closePopup(popupImage));
+
+// оверлей
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("popup")) {
+    closePopup(event.target);
+  }
+});
+
+document.addEventListener("keydown", closePopupEsc);

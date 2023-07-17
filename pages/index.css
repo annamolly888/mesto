@@ -33,3 +33,7 @@
 @import url(../blocks/cards/__title/cards__title.css);
 @import url(../blocks/cards/__trash/cards__trash.css);
 @import url(../blocks/popup/__container-img/popup__container-img.css);
+@import url(../blocks/popup/__save-button/_disabled/popup__save-button_disabled.css);
+@import url(../blocks/popup/__error/popup__error.css);
+@import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+@import url(../blocks/form/__input/_type/_error/form__input_type_error.css);
