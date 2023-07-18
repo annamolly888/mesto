@@ -2,8 +2,6 @@ const editButton = document.querySelector(".profile__edit-button");
 const profileForm = document.querySelector(".form_type_profile");
 
 const popupEdit = document.querySelector(".popup_type_profile-edit");
-const profileCloseButton = popupEdit.querySelector(".popup__close-button");
-const cardCloseButton = document.querySelector(".popup__close-button_add");
 const buttonAdd = document.querySelector(".profile__add-button");
 const popupAdd = document.querySelector(".popup_type_profile-add");
 
@@ -24,7 +22,6 @@ const linkInput = document.querySelector(".form__input_link");
 const popupImage = document.querySelector(".popup_type_image");
 const popupImageDescription = document.querySelector(".popup__description");
 const popupImagePhoto = document.querySelector(".popup__img");
-const popupImgClose = document.querySelector(".popup__close-button_img");
 
 // Открыть попап
 function openPopup(popup) {
@@ -115,7 +112,6 @@ const handleAddFormSubmit = (event) => {
   cardsContainer.prepend(createCardElement(newCardData));
   closePopupAdd();
   event.target.reset();
-  enableValidation(selectors);
 };
 
 // закрытие клавишей esc
@@ -129,16 +125,13 @@ function closePopupEsc(evt) {
 // оверлей
 const handlePopupClose = (evt) => {
   const overlay = evt.target.classList.contains("popup");
-  const closeBtn = evt.target.classList.contains("popup__close");
+  const closeBtn = evt.target.classList.contains("popup__close-button");
   if (overlay || closeBtn) {
-    closePopup(evt.target);
+    closePopup(evt.target.closest(".popup"));
   }
 };
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 cardForm.addEventListener("submit", handleAddFormSubmit);
 editButton.addEventListener("click", () => openPopupEdit());
-profileCloseButton.addEventListener("click", () => closePopup(popupEdit));
-cardCloseButton.addEventListener("click", () => closePopup(popupAdd));
 buttonAdd.addEventListener("click", () => openPopup(popupAdd));
-popupImgClose.addEventListener("click", () => closePopup(popupImage));
