@@ -26,23 +26,24 @@ export class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._image = this._element.querySelector(".cards__image");
-    this._setEventListeners();
-    this._element.querySelector(".cards__title").textContent = this._name;
+    this._cardLike = this._element.querySelector(".cards__like");
+    this._cardTitle = this._element.querySelector(".cards__title");
+    this._cardDelete = this._element.querySelector(".cards__trash");
+    this._cardTitle.textContent = this._name;
     this._image.src = this._link;
     this._image.alt = this._name;
+    this._setEventListeners();
 
     return this._element;
   }
 
   // лайк
   _like() {
-    this._element
-      .querySelector(".cards__like")
-      .classList.toggle("cards__like_active");
+    this._cardLike.classList.toggle("cards__like_active");
   }
 
   // удаление
-  _deleteBtn() {
+  _deleteCard() {
     this._element.remove();
   }
 
@@ -56,17 +57,15 @@ export class Card {
 
   _setEventListeners() {
     // лайк
-    this._element
-      .querySelector(".cards__like")
-      .addEventListener("click", () => {
-        this._like();
-      });
+    this._cardLike.addEventListener("click", () => {
+      this._like();
+    });
 
     // удаление
     this._element
       .querySelector(".cards__trash")
       .addEventListener("click", () => {
-        this._deleteBtn();
+        this._deleteCard();
       });
     this._image.addEventListener("click", () => {
       this._handlePopupOpen();

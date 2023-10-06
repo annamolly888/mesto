@@ -1,6 +1,5 @@
 export class FormValidator {
   constructor(validationSettings, formElement) {
-    this._formSelector = validationSettings.formSelector;
     this._inputSelector = validationSettings.inputSelector;
     this._submitButtonSelector = validationSettings.submitButtonSelector;
     this._inactiveButtonClass = validationSettings.inactiveButtonClass;
@@ -32,7 +31,7 @@ export class FormValidator {
 
   // отключение кнопки
   disableSubmitButton() {
-    this._buttonElement.disabled = "disabled";
+    this._buttonElement.disabled = true;
     this._buttonElement.classList.add(this._inactiveButtonClass);
   }
 

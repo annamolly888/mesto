@@ -1,5 +1,8 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import { validationSettings, initialCards } from "./constants.js";
+
+const cardsEl = document.querySelector(".cards");
 
 const editButton = document.querySelector(".profile__edit-button");
 const profileForm = document.querySelector(".form_type_profile");
@@ -28,46 +31,17 @@ export const popupImageDescription = document.querySelector(
 );
 export const popupImagePhoto = document.querySelector(".popup__img");
 
-const validationSettings = {
-  formSelector: ".form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: "popup__save-button_disabled",
-  inputErrorClass: "form__input_type_error",
-};
+// Лайк
+export const likeButton = document.querySelector(".cards__like");
 
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+const createCard = (item) => {
+  const card = new Card(item, ".card-template");
+  return card.generateCard();
+};
 
 //   экземпляр рендера карточек
 initialCards.forEach((item) => {
-  const card = new Card(item, ".card-template");
-  const cardElement = card.generateCard();
-  document.querySelector(".cards").append(cardElement);
+  cardsEl.prepend(createCard(item));
 });
 
 //  экземпляры валидации форм
@@ -82,12 +56,9 @@ addFormValidation.enableValidation();
 // создание карточек
 const createElement = (evt) => {
   evt.preventDefault();
-  const newCard = new Card(
-    { name: titleInput.value, link: linkInput.value },
-    ".card-template"
+  cardsEl.prepend(
+    createCard({ name: titleInput.value, link: linkInput.value })
   );
-  const cardElement = newCard.generateCard();
-  document.querySelector(".cards").prepend(cardElement);
   addForm.reset();
   addFormValidation.disableSubmitButton();
   closePopup(popupAdd);
@@ -117,9 +88,9 @@ function closePopupEsc(evt) {
 
 // оверлей
 const handlePopupClose = (evt) => {
-  const overlay = evt.target.classList.contains("popup");
-  const closeBtn = evt.target.classList.contains("popup__close-button");
-  if (overlay || closeBtn) {
+  const isOverlay = evt.target.classList.contains("popup");
+  const isCloseBtn = evt.target.classList.contains("popup__close-button");
+  if (isOverlay || isCloseBtn) {
     closePopup(evt.target.closest(".popup"));
   }
 };

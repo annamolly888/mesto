@@ -18,6 +18,8 @@ Grid Layout
 Flexbox
 Медиа запросы
 JS
+ООП
+ES6 Modules
 
 **Ссылка**
 https://annamolly888.github.io/mesto/
