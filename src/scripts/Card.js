@@ -1,18 +1,11 @@
-import {
-  popupImage,
-  popupImagePhoto,
-  popupImageDescription,
-  openPopup,
-} from "./script.js";
-
-export class Card {
-  constructor(data, templateSelector) {
-    this._name = data.name;
+export default class Card {
+  constructor({ data, handleCardClick }, templateSelector) {
     this._link = data.link;
+    this._name = data.name;
+    this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
   }
 
-  // получение темплейта
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)
@@ -26,20 +19,21 @@ export class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._image = this._element.querySelector(".cards__image");
-    this._cardLike = this._element.querySelector(".cards__like");
-    this._cardTitle = this._element.querySelector(".cards__title");
-    this._cardDelete = this._element.querySelector(".cards__trash");
-    this._cardTitle.textContent = this._name;
+    this._heading = this._element.querySelector(".cards__title");
+    this._likeButton = this._element.querySelector(".cards__like");
+    this._deleteButton = this._element.querySelector(".cards__trash");
+
     this._image.src = this._link;
     this._image.alt = this._name;
-    this._setEventListeners();
+    this._heading.textContent = this._name;
 
+    this._setEventListeners();
     return this._element;
   }
 
   // лайк
   _like() {
-    this._cardLike.classList.toggle("cards__like_active");
+    this._likeButton.classList.toggle("cards__like_active");
   }
 
   // удаление
@@ -47,17 +41,9 @@ export class Card {
     this._element.remove();
   }
 
-  // удаление
-  _handlePopupOpen() {
-    openPopup(popupImage);
-    popupImagePhoto.src = this._link;
-    popupImagePhoto.alt = this._name;
-    popupImageDescription.textContent = this._name;
-  }
-
   _setEventListeners() {
     // лайк
-    this._cardLike.addEventListener("click", () => {
+    this._likeButton.addEventListener("click", () => {
       this._like();
     });
 
@@ -67,8 +53,10 @@ export class Card {
       .addEventListener("click", () => {
         this._deleteCard();
       });
+
+    // открытие
     this._image.addEventListener("click", () => {
-      this._handlePopupOpen();
+      this._handleCardClick(this._link, this._name);
     });
   }
 }

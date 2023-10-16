@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(validationSettings, formElement) {
     this._inputSelector = validationSettings.inputSelector;
     this._submitButtonSelector = validationSettings.submitButtonSelector;
@@ -35,7 +35,7 @@ export class FormValidator {
     this._buttonElement.classList.add(this._inactiveButtonClass);
   }
 
-  // включение кнопки сохранения
+  // включение кнопки
   _enableSubmitButton() {
     this._buttonElement.disabled = false;
     this._buttonElement.classList.remove(this._inactiveButtonClass);
@@ -76,6 +76,14 @@ export class FormValidator {
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });
+    });
+  }
+
+  // сброс
+  resetFormValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
     });
   }
 
