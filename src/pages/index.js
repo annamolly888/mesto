@@ -24,8 +24,8 @@ const userInfo = new UserInfo(profileName, profileJob);
 
 // PopupWithForm для редактирования профиля
 const infoPopupForm = new PopupWithForm(popupEdit, {
-  handleFormSubmit: ({ name, job }) => {
-    userInfo.setUserInfo({ name, job });
+  handleFormSubmit: ({ title, job }) => {
+    userInfo.setUserInfo({ title, job });
   },
 });
 
