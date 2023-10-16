@@ -1,5 +1,5 @@
-import Card from "../scripts/Card.js";
-import FormValidator from "../scripts/FormValidator.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 import {
   validationSettings,
   initialCards,
@@ -12,11 +12,11 @@ import {
   profileJob,
   popupImage,
   popupAdd,
-} from "../scripts/constants.js";
-import Section from "../scripts/Section.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
-import UserInfo from "../scripts/UserInfo.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
+} from "../utils/constants.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import "./index.css";
 
 const imagePopup = new PopupWithImage(popupImage);
@@ -33,7 +33,7 @@ infoPopupForm.setEventListeners();
 
 // Открытие окна редактирования профиля
 editButton.addEventListener("click", () => {
-  infoPopupForm.openPopup();
+  infoPopupForm.open();
   infoPopupForm.setInputValues(userInfo.getUserInfo());
   profileInfoValidation.resetFormValidation();
 });
@@ -44,7 +44,7 @@ const createCard = (item) => {
     {
       data: item,
       handleCardClick: (link, name) => {
-        imagePopup.openPopup(link, name);
+        imagePopup.open(link, name);
       },
     },
     ".card-template"
@@ -70,17 +70,17 @@ const defaultCards = new Section(
 defaultCards.renderCards(initialCards);
 
 // PopupWithForm для добавления
-const addPopupForm = new PopupWithForm(popupAdd, {
+const popupAddCard = new PopupWithForm(popupAdd, {
   handleFormSubmit: (data) => {
     defaultCards.addItem(createCard(data));
   },
 });
 
-addPopupForm.setEventListeners();
+popupAddCard.setEventListeners();
 
 // Открытие попапа добавления картинки
 buttonAdd.addEventListener("click", () => {
-  addPopupForm.openPopup();
+  popupAddCard.open();
   photoAddingValidation.resetFormValidation();
 });
 
