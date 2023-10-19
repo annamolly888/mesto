@@ -2,7 +2,6 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import {
   validationSettings,
-  // initialCards,
   cardsEl,
   editButton,
   popupEdit,
@@ -28,19 +27,10 @@ import "./index.css";
 const imagePopup = new PopupWithImage(popupImage);
 const userInfo = new UserInfo(profileName, profileJob, profileAvatar);
 
-// // PopupWithForm для редактирования профиля
-// const infoPopupForm = new PopupWithForm(popupEdit, {
-//   handleFormSubmit: ({ title, job }) => {
-//     userInfo.setUserInfo({ title, job });
-//   },
-// });
-
-// infoPopupForm.setEventListeners();
-
 let userId;
 
 const avatarChangeValidation = new FormValidator(
-  formValidationConfig,
+  validationSettings,
   popupAvatar
 );
 avatarChangeValidation.enableValidation();
@@ -86,13 +76,13 @@ const createCard = (item) => {
         imagePopup.open(link, name);
       },
       handleDeleteIconClick: () => {
-        popupConfirmDelete.openPopup();
+        popupConfirmDelete.open();
         popupConfirmDelete.setSubmitAction(() => {
           api
             .deleteCard(card.getCardId())
             .then(() => {
               card.deleteCard();
-              popupConfirmDelete.closePopup();
+              popupConfirmDelete.close();
             })
             .catch((err) => {
               console.log(`Ошибка: ${err}`);
@@ -150,7 +140,7 @@ const avatarChangeForm = new PopupWithForm(popupAvatar, {
       .changeUserAvatar(data)
       .then((data) => {
         userInfo.changeProfileAvatar(data.avatar);
-        avatarChangeForm.closePopup();
+        avatarChangeForm.close();
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -165,7 +155,7 @@ avatarChangeForm.setEventListeners();
 
 // Открытие окна изменения аватара
 profileAvatarContainer.addEventListener("click", () => {
-  avatarChangeForm.openPopup();
+  avatarChangeForm.open();
   avatarChangeValidation.resetFormValidation();
 });
 
@@ -175,18 +165,18 @@ const popupAddCard = new PopupWithForm(popupAdd, {
     //     defaultCards.addItem(createCard(data));
     //   },
     // });
-    addPopupForm.renderLoading(true);
+    popupAddCard.renderLoading(true);
     api
       .addNewCard(data)
       .then((res) => {
         defaultCards.addNewItem(createCard(res));
-        addPopupForm.closePopup();
+        popupAddCard.close();
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        addPopupForm.renderLoading(false);
+        popupAddCard.renderLoading(false);
       });
   },
 });
@@ -194,14 +184,14 @@ const popupAddCard = new PopupWithForm(popupAdd, {
 popupAddCard.setEventListeners();
 
 // Экземпляр класса PopupWithForm для окна редактирования профиля
-const infoPopupForm = new PopupWithForm(popupInfo, {
+const infoPopupForm = new PopupWithForm(popupEdit, {
   handleFormSubmit: (data) => {
     infoPopupForm.renderLoading(true);
     api
       .changeUserInfo(data)
       .then((data) => {
         userInfo.setUserInfo(data);
-        infoPopupForm.closePopup();
+        infoPopupForm.close();
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -216,8 +206,8 @@ infoPopupForm.setEventListeners();
 
 // Открытие окна редактирования профиля
 editButton.addEventListener("click", () => {
-  infoPopupForm.openPopup();
-  infoPopupForm.setInputValues(userInfo.getProfileInfo());
+  infoPopupForm.open();
+  infoPopupForm.setInputValues(userInfo.getUserInfo());
   profileInfoValidation.resetFormValidation();
 });
 

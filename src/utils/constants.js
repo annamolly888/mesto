@@ -39,7 +39,7 @@ export const popupImagePhoto = document.querySelector(".popup__img");
 export const likeButton = document.querySelector(".cards__like");
 
 // Смена аватара и подтверждение удаления карточки
-export const profileAvatar = document.querySelector(".profile__avatar");
+export const profileAvatar = document.querySelector(".profile__logo");
 export const profileAvatarContainer = document.querySelector(
   ".profile__avatar-container"
 );

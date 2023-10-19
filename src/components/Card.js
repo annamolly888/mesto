@@ -59,11 +59,11 @@ export default class Card {
   }
 
   putLike() {
-    this._likeButton.classList.add("element__like-button_active");
+    this._likeButton.classList.add("cards__like_active");
   }
 
   removeLike() {
-    this._likeButton.classList.remove("element__like-button_active");
+    this._likeButton.classList.remove("cards__like_active");
   }
 
   _changeLikeButtonStatus() {
@@ -81,7 +81,7 @@ export default class Card {
   }
 
   // удаление
-  _deleteCard() {
+  deleteCard() {
     this._element.remove();
     this._element = null;
   }

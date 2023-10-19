@@ -47,7 +47,7 @@ export default class Api {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
-        name: data.name,
+        name: data.title,
         about: data.job,
       }),
     }).then(this._checkResponse);
@@ -59,7 +59,7 @@ export default class Api {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
-        avatar: data.link,
+        avatar: data.avatar,
       }),
     }).then(this._checkResponse);
   }

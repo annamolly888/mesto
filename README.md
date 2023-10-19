@@ -21,6 +21,7 @@ JS
 ООП
 ES6 Modules
 Webpack
+API
 
 **Ссылка**
 https://annamolly888.github.io/mesto/
