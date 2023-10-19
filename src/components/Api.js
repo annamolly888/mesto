@@ -72,7 +72,7 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-  // Убрать лайк карточки
+  // Убрать лайк карточке
   removeLike(id) {
     return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: "DELETE",

@@ -49,11 +49,6 @@ export default class Card {
     return this._element;
   }
 
-  // лайк
-  // _like() {
-  //   this._likeButton.classList.toggle("cards__like_active");
-  // }
-
   cardIsLiked() {
     return this.likesArray.some((user) => user._id === this._userId);
   }
@@ -105,12 +100,6 @@ export default class Card {
       this._deleteButton.remove();
       this._deleteButton = null;
     }
-
-    // this._element
-    //   .querySelector(".cards__trash")
-    //   .addEventListener("click", () => {
-    //     this._deleteCard();
-    //   });
 
     // открытие
     this._image.addEventListener("click", () => {

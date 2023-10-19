@@ -53,7 +53,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     console.log(`Ошибка: ${err}`);
   });
 
-// Попап подтерждения удаления карточки
+// Попап подтверждения удаления карточки
 const popupConfirmDelete = new PopupConfirmDelete(popupDeleteCard);
 
 popupConfirmDelete.setEventListeners();
@@ -130,9 +130,7 @@ const defaultCards = new Section(
   cardsEl
 );
 
-// defaultCards.renderCards(initialCards);
-
-// Экземпляр класса PopupWithForm для окна изменения аватара
+// PopupWithForm для изменения аватара
 const avatarChangeForm = new PopupWithForm(popupAvatar, {
   handleFormSubmit: (data) => {
     avatarChangeForm.renderLoading(true);
@@ -162,9 +160,6 @@ profileAvatarContainer.addEventListener("click", () => {
 // PopupWithForm для добавления
 const popupAddCard = new PopupWithForm(popupAdd, {
   handleFormSubmit: (data) => {
-    //     defaultCards.addItem(createCard(data));
-    //   },
-    // });
     popupAddCard.renderLoading(true);
     api
       .addNewCard(data)
@@ -183,7 +178,7 @@ const popupAddCard = new PopupWithForm(popupAdd, {
 
 popupAddCard.setEventListeners();
 
-// Экземпляр класса PopupWithForm для окна редактирования профиля
+// PopupWithForm для редактирования профиля
 const infoPopupForm = new PopupWithForm(popupEdit, {
   handleFormSubmit: (data) => {
     infoPopupForm.renderLoading(true);
